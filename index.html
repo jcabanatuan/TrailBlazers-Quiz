@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" >
+    <meta name = "description" content="A quiz to determine just how sad knowledgeable you are about the sad state of affairs that is Trail Blazers fandom
+    ">
+    <meta name="viewport" content="width=device-width">
+    <title>TrailBlazers Sadness Quiz</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+  <body>
+    <div id="container">
+      <h1>TrailBlazers Sadness Quiz</h1>
+      <h2 class = "question">
+        Question
+      </h2>
+      <form>
+        <fieldset>
+          <label>
+            <input class = "answer" type = "radio" name="option" checked></input>
+            <span>Answer 1</span>
+          </label>
+          <label>
+            <input class = "answer" type = "radio" name="option" checked></input>
+            <span>Answer 2</span>
+          </label>
+          <label>
+            <input class = "answer" type = "radio" name="option" checked></input>
+            <span>Answer 3</span>
+          </label>
+          <label>
+            <input class = "answer" type = "radio" name="option" checked></input>
+            <span>Answer 4</span>
+          </label>
+        </fieldset>
+        <button id="js-submit-button">Submit</button>
+      </form>
+      <div id="status-bar">
+        <span id="question-count">Question 1</span>
+        <span id="score-count">Score: 0/0</span>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
