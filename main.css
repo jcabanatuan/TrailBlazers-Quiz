@@ -6,7 +6,7 @@ fieldset {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 800px;
+  width: 100%;
 }
 
 #status-bar{
@@ -25,6 +25,7 @@ fieldset {
 
 label{
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 h1, h2{
