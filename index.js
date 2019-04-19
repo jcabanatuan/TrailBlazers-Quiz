@@ -1,6 +1,6 @@
 'use strict';
 
-
+////Questions and Answer options
 const questionSet = [
   {
     number: 1,
@@ -56,6 +56,7 @@ const questionSet = [
 
 ];
 
+//correct answers
 const ANSWERS = [
   `CJ McCollum`,
   `Elle Leonard`,
@@ -65,6 +66,7 @@ const ANSWERS = [
   `Midrange`,
 ];
 
+//feedback to display
 const answerFeedback = [
   {
     number: 1,
@@ -114,7 +116,7 @@ const answerFeedback = [
 let questionNum = 1;
 
 let correctAnswers = 0;
-
+//how to display questions and options to the user
 function questionTemplate(correctAnswers, question, questionsAnswered) {
   return `
     <section id="question-page" role="main">
@@ -153,19 +155,19 @@ function questionTemplate(correctAnswers, question, questionsAnswered) {
   </section>
   `;
 }
-
+//what happens when you click the start button
 function handleStartButton() {
   $('#js-start-button').click(function(event) {
     nextQuestion();
   });
 }
-
+//when the user clicks Submit, check answer, generate feedback
 function handleSubmitButton() {
   $('#container').on('click', '#js-submit-button', function(event) {
     event.preventDefault()
 
     const answer = $('input:checked').siblings('span');
-    //update to call only the generate feedback function I will write
+
     const userIsCorrect = checkUserAnswer(answer);
     if(userIsCorrect) {
       generateCorrectFeedback();
@@ -174,14 +176,14 @@ function handleSubmitButton() {
     }
   });
 }
-
+//After displaying feedback, check if there are remaining questions.
 function handleNextButton() {
   $('#container').on('click', '#js-next-button', function(event) {
-    let lastQuestion = questionSet.length;
-    if(questionNum === lastQuestion) {
-      createResultsPage(correctAnswers);
+    let finalQuestion = questionSet.length;
+    if(questionNum === finalQuestion) {
+      showResultsPage(correctAnswers);
     } else {
-      iterateQuestion();
+      countQuestion();
       nextQuestion();
   }
   });
@@ -194,10 +196,10 @@ function handleRestartButton() {
 
     correctAnswers = 0;
 
-    nextQuestion();
+    countQuestion();
   });
 }
-
+//display next question.
 function nextQuestion() {
 
   const question = questionSet[questionNum - 1];
@@ -206,7 +208,7 @@ function nextQuestion() {
 
   $('#container').html(questionTemplate(correctAnswers, question, questionsAnswered));
 }
-
+//See if user selection matches answerset
 function checkUserAnswer(answer) {
   if(answer.text() === ANSWERS[questionNum - 1]) {
     return true;
@@ -216,12 +218,12 @@ function checkUserAnswer(answer) {
 }
 
 
-//Write 1 feedback function that displays based whatever is in the answerFeedback object based on user pick.
+//show correct feedback if answer is correct
 function generateCorrectFeedback() {
   $('#container').html(correctFeedbackTemplate(questionNum));
-  iterateCorrectAnswers();
+  countCorrectAnswers();
 }
-//update
+
 function correctFeedbackTemplate(){
   return `
   <section class="feedback-page" role="main">
@@ -231,11 +233,11 @@ function correctFeedbackTemplate(){
   </section>
 `;
 }
-//update
+//show feedback if question is wrong.
 function generateIncorrectFeedback() {
   $('#container').html(incorrectFeedbackTemplate(questionNum));
 }
-//update
+
 function incorrectFeedbackTemplate(questionNum) {
   return `
     <section class="feedback-page" role="main">
@@ -245,17 +247,16 @@ function incorrectFeedbackTemplate(questionNum) {
     </section>
 `;
 }
-
-function iterateQuestion() {
+//keep track of the qustion we are on
+function countQuestion() {
   questionNum++;
 }
-
-function iterateCorrectAnswers() {
+//keep track of how many questions are correct.
+function countCorrectAnswers() {
   correctAnswers++;
 }
-
-//insert Damian Lillard Video at line 257
-function createResultsPage(correctAnswers) {
+//When the quiz is done, display feedback based on number of questions that are correct.
+function showResultsPage(correctAnswers) {
   if (correctAnswers>=3){
     $('#container').html(`
       <section id="final-page">
@@ -276,7 +277,7 @@ function createResultsPage(correctAnswers) {
   `)}
   ;
 }
-
+//callback functions
 function handleButtons() {
   handleStartButton();
   handleSubmitButton();
