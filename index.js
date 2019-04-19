@@ -256,12 +256,25 @@ function iterateCorrectAnswers() {
 
 //insert Damian Lillard Video at line 257
 function createResultsPage(correctAnswers) {
-  $('#container').html(`
-    <section id="final-page">
-      <h2>Final Score: ${correctAnswers} out of 6</h2>
-      <button id="js-restart-button">Play Again?</button>
-    </section>
-  `);
+  if (correctAnswers>=3){
+    $('#container').html(`
+      <section id="final-page">
+        <h2>Suit up. You my friend, are a Blazers legend.</h2>
+        <img src="https://media.giphy.com/media/7J7lGgDKTpycRkdK6x/source.gif" alt="damian lillard and cj mcCollum dancing" class="final-image">
+        <h2>Final Score: ${correctAnswers} out of 6</h2>
+        <button id="js-restart-button">Play Again?</button>
+      </section>
+  `)}
+  else{
+    $('#container').html(`
+      <section id="final-page">
+        <h2>Back to the bench young blood.</h2>
+        <img src="https://media.giphy.com/media/3o7TKSmi9uldiIVEAM/giphy.gif" alt="Sad Damian Lillard" class="final-image">
+        <h2>Final Score: ${correctAnswers} out of 6</h2>
+        <button id="js-restart-button">Play Again?</button>
+      </section>
+  `)}
+  ;
 }
 
 function handleButtons() {
